@@ -1,0 +1,101 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: #faf9f3;
+    color: #333;
+
+    .container {
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+}
+
+/* TOP ACTIONS */
+
+.top-actions{
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    .container{
+        display: flex;
+        justify-content: space-between;
+
+        .top-logo{
+            padding: 5px 15px;
+            background-color: #cccccc;
+            border-radius: 4px;
+            min-width: 150px;
+            margin: 5px 0;
+            text-align: center;
+        }
+        .top-menu{
+            ul{
+                display: flex;
+                list-style-type: none;
+                margin: unset;
+
+                li{
+                    padding: 10px 15px;
+                    margin: 0 2px;
+                    border-radius: 4px;
+                    cursor: pointer;
+
+                    &.active,
+                    &:hover{
+                        background-color: #ebc200;
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* MAIN CONTENT */
+
+// .main{
+//     .container{
+//         h1{
+
+//         }
+
+//         .featured-book{
+
+//         }
+//     }
+// }
+
+/* RESPONSIVE BREAKPOINTS */
+
+/* Small devices */
+@media (min-width: 576px) {  
+    .container{
+        max-width: 540px;
+    }
+}
+ 
+/* Medium devices  */
+@media (min-width: 768px) {  
+    .container{
+        max-width: 720px;
+    }
+}
+ 
+/* Large devices */
+@media (min-width: 992px) { 
+    .container{
+        max-width: 960px;
+    }
+}
+ 
+/* Extra large devices */
+@media (min-width: 1200px) {  
+    .container{
+        max-width: 1140px;
+    }
+}
