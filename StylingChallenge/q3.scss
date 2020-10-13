@@ -1,10 +1,28 @@
+/* VARIABLES */
+$text-color: #333;
+$muted-text: #666;
+$white: #fff;
+$highlight-color: #ebc200;
+$light-highlight: #faf9f3;
+$gray: #ccc; 
+
+/* MIXINS */
+@mixin box-shadow($top, $left, $blur, $spread, $color) {
+    -webkit-box-shadow: $top $left $blur $spread $color;
+    -moz-box-shadow: $top $left $blur $spread $color;
+    box-shadow: $top $left $blur $spread $color;
+}
+  
+
+/* STYLES */
+
 * {
     font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
-    background-color: #faf9f3;
-    color: #333;
+    background-color: $light-highlight;
+    color: $text-color;
 
     .container {
         width: 100%;
@@ -20,6 +38,7 @@ body {
 .top-actions{
     padding-top: 5px;
     padding-bottom: 5px;
+    margin-bottom: 15px;
 
     .container{
         display: flex;
@@ -27,7 +46,7 @@ body {
 
         .top-logo{
             padding: 5px 15px;
-            background-color: #cccccc;
+            background-color: $gray;
             border-radius: 4px;
             min-width: 150px;
             margin: 5px 0;
@@ -47,8 +66,8 @@ body {
 
                     &.active,
                     &:hover{
-                        background-color: #ebc200;
-                        color: #fff;
+                        background-color: $highlight-color;
+                        color: $white;
                     }
                 }
             }
@@ -58,17 +77,68 @@ body {
 
 /* MAIN CONTENT */
 
-// .main{
-//     .container{
-//         h1{
+.main{
+    .container{
+        background-color: $white;
+        border-radius: 10px;
+        @include box-shadow(0px, 0px, 8px, 0px, rgba(221,221,221,1));
+        padding: 25px;
 
-//         }
+        h1{
+            margin-top: 0;
+            font-weight: normal;
+            font-size: 40px;
+        }
 
-//         .featured-book{
+        .featured-book{
+            background-color: $light-highlight;
+            margin-left: -25px;
+            margin-right: -25px;
+            padding: 25px;
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            position: relative;
 
-//         }
-//     }
-// }
+            .recommended{
+                position: absolute;
+                top: 0;
+                right: 0;
+                background-color: $highlight-color;
+                color: $white;
+                border-bottom-left-radius: 10px;
+                padding: 5px 10px;
+                font-size: 14px;
+            }
+
+            img{
+                border-radius: 10px;
+                flex: 0 0 25%;
+                max-width: 25%;
+                align-self: flex-start;
+            }
+
+            .book-info{
+                flex: 0 0 75%;
+                max-width: 75%;
+
+                .title{
+                    margin: 0;
+                    padding: 0 15px;
+                    font-size: 35px;
+                }
+                .author{
+                    padding: 0 15px;
+                    color: $muted-text;
+                }
+                .synopsis{
+                    padding: 0 15px;
+                    margin-top: 20px;
+                }
+            }
+        }
+    }
+}
 
 /* RESPONSIVE BREAKPOINTS */
 
@@ -95,7 +165,5 @@ body {
  
 /* Extra large devices */
 @media (min-width: 1200px) {  
-    .container{
-        max-width: 1140px;
-    }
+
 }
