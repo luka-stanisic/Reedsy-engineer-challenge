@@ -12,8 +12,6 @@ body {
 }
 body .container {
   width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
 }
@@ -27,6 +25,7 @@ body .container {
 .top-actions .container {
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
 }
 .top-actions .container .top-logo {
   padding: 5px 15px;
@@ -39,7 +38,10 @@ body .container {
 .top-actions .container .top-menu ul {
   display: flex;
   list-style-type: none;
-  margin: unset;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 .top-actions .container .top-menu ul li {
   padding: 10px 15px;
@@ -60,11 +62,11 @@ body .container {
   -webkit-box-shadow: 0px 0px 8px 0px #dddddd;
   -moz-box-shadow: 0px 0px 8px 0px #dddddd;
   box-shadow: 0px 0px 8px 0px #dddddd;
-  padding: 25px;
   margin-bottom: 45px;
 }
 .main .container h1 {
-  margin-top: 0;
+  margin: 0;
+  padding: 20px;
   font-weight: normal;
   font-size: 40px;
 }
@@ -72,8 +74,6 @@ body .container {
 /* FEATURED BOOK */
 .featured-book {
   background-color: #faf9f3;
-  margin-left: -25px;
-  margin-right: -25px;
   padding: 25px;
   display: flex;
   -ms-flex-wrap: wrap;
@@ -94,29 +94,27 @@ body .container {
   border-radius: 10px;
   flex: 0 0 25%;
   max-width: 25%;
+  min-width: 100px;
   align-self: flex-start;
 }
 .featured-book .book-info {
-  flex: 0 0 75%;
-  max-width: 75%;
+  flex: 0 0 100%;
+  max-width: 100%;
 }
 .featured-book .book-info .title {
   margin: 0;
-  padding: 0 15px;
   font-size: 35px;
 }
 .featured-book .book-info .author {
-  padding: 0 15px;
   color: #666;
 }
 .featured-book .book-info .synopsis {
-  padding: 0 15px;
   margin-top: 20px;
 }
 
 /* TOP VOTED */
 .top-voted {
-  padding-top: 20px;
+  padding: 20px 20px 0 20px;
 }
 .top-voted h2 {
   font-size: 30px;
@@ -128,8 +126,9 @@ body .container {
   justify-content: space-between;
 }
 .top-voted .books-list .book {
-  flex: 0 0 32%;
-  max-width: 32%;
+  flex: 0 0 100%;
+  max-width: 100%;
+  margin-bottom: 20px;
   background-color: #faf9f3;
   border-radius: 10px;
   position: relative;
@@ -212,6 +211,30 @@ footer .container ul li a:hover {
 @media (min-width: 768px) {
   .container {
     max-width: 720px;
+  }
+
+  .top-actions .container {
+    flex-direction: row;
+  }
+
+  .featured-book .book-info {
+    flex: 0 0 75%;
+    max-width: 75%;
+  }
+  .featured-book .book-info .title {
+    padding: 0 15px;
+  }
+  .featured-book .book-info .author {
+    padding: 0 15px;
+  }
+  .featured-book .book-info .synopsis {
+    padding: 0 15px;
+  }
+
+  .top-voted .books-list .book {
+    flex: 0 0 32%;
+    max-width: 32%;
+    margin-bottom: 0;
   }
 }
 /* Large devices */
