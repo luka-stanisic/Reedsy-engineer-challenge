@@ -55,11 +55,13 @@ body .container {
 /* MAIN CONTENT */
 .main .container {
   background-color: #fff;
-  border-radius: 10px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
   -webkit-box-shadow: 0px 0px 8px 0px #dddddd;
   -moz-box-shadow: 0px 0px 8px 0px #dddddd;
   box-shadow: 0px 0px 8px 0px #dddddd;
   padding: 25px;
+  margin-bottom: 45px;
 }
 .main .container h1 {
   margin-top: 0;
@@ -174,6 +176,29 @@ body .container {
 }
 .top-voted .books-list .book .book-info .synopsis p {
   margin-top: 20px;
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #292929;
+  color: white;
+  text-align: center;
+  height: 45px;
+}
+footer .container ul {
+  display: flex;
+  list-style-type: none;
+  justify-content: center;
+}
+footer .container ul li {
+  padding: 0 30px;
+  cursor: pointer;
+}
+footer .container ul li a:hover {
+  color: #ccc;
 }
 
 /* RESPONSIVE BREAKPOINTS */
