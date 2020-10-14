@@ -6,7 +6,7 @@ import { BooksListComponent } from './books-list/books-list.component';
 const routes: Routes = [
 	{ path: '', redirectTo: 'books', pathMatch: 'full' },
 	{ path: 'books', component: BooksListComponent },
-	{ path: 'book/:slug', component: BookPageComponent },
+	{ path: 'books/:slug', component: BookPageComponent },
 	{ path: '**', component: BooksListComponent },
 ];
 

@@ -1,3 +1,16 @@
+
+<h2>Top books of all time</h2>
 <div *ngFor="let book of books$ | async">
-    {{book.author}}
+    <div [routerLink]="['/books', book.slug]">
+        <img [src]="book.cover" alt="Book cover">
+    </div>
+    
+    <div>{{book.title}}</div>
+    <div>{{book.author}}</div>
+    <div>{{book.rating}}</div>
+    <div>{{book.synopsis}}</div>
+    <div>{{book.title}}</div>
+    <div>{{book.upvoted}}</div>
+    <div>{{book.author}}</div>
+    <div>{{book.upvotes}}</div>
 </div>
