@@ -1,3 +1,37 @@
-<p>book-page works!</p>
+<div class="container page-container">
+    <div class="back-button">
+        <a [routerLink]="['/books']">&lsaquo; Back</a>
+    </div>
 
-{{(book$ | async).title}}
+    <h1 class="title">{{book.title}}</h1>
+    <div class="author">
+        {{'By ' + book.author}}
+    </div>
+
+    <div class="rating">
+        <span class="main">{{book.rating}}</span>
+        <span class="total"> / 10</span>
+    </div>
+
+    <div class="upvote">
+        <button class="button" [class.activated]="book.upvoted" (click)="toogleUpvote(book)">
+            {{book.upvoted ? 'Upvoted' : 'Upvote'}}
+        </button>
+        <div class="upvotes">{{'Upvoted ' + book.upvotes + ' times'}}</div>
+    </div>
+
+    <div class="flex-wrap">
+        <div class="cover">
+            <img [src]="book.cover" alt="Book cover" [title]="book.title">
+        </div>
+    
+        <div class="synopsis">
+            <div class="synopsis-container">
+                <h3 class="header">Synopsis</h3>
+                <div class="text">
+                    {{book.synopsis}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
