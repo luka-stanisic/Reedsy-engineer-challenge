@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { BooksListComponent } from './books-list/books-list.component';
 import { BookPageComponent } from './book-page/book-page.component';
 import { HeaderComponent } from './header/header.component';
+import { TruncatePipe } from './shared/pipes/truncate.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     BooksListComponent,
     BookPageComponent,
-    HeaderComponent
+    HeaderComponent,
+    TruncatePipe
   ],
   imports: [
     BrowserModule,

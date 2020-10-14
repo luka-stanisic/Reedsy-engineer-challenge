@@ -1,16 +1,32 @@
-
-<h2>Top books of all time</h2>
-<div *ngFor="let book of books$ | async">
-    <div [routerLink]="['/books', book.slug]">
-        <img [src]="book.cover" alt="Book cover">
-    </div>
+<div class="container page-container">
+    <h1 class="page-title">Top books of all time</h1>
     
-    <div>{{book.title}}</div>
-    <div>{{book.author}}</div>
-    <div>{{book.rating}}</div>
-    <div>{{book.synopsis}}</div>
-    <div>{{book.title}}</div>
-    <div>{{book.upvoted}}</div>
-    <div>{{book.author}}</div>
-    <div>{{book.upvotes}}</div>
+    <div class="book-list">
+        <div *ngFor="let book of books; let i = index" class="book">
+            <div class="book-details">
+                <div class="cover">
+                    <img [src]="book.cover" alt="Book cover" [routerLink]="['/books', book.slug]" [title]="book.title">
+                </div>
+                
+                <div class="book-info">
+                    <div class="title" [routerLink]="['/books', book.slug]">{{(i + 1) + '. ' + book.title}}</div>
+                    <div class="author">{{book.author}}</div>
+                    
+                    <div class="rating">
+                        <span class="main">{{book.rating}}</span>
+                        <span class="total"> / 10</span>
+                    </div>
+
+                    <div class="upvote">
+                        <button class="button" [class.activated]="book.upvoted" (click)="toogleUpvote(book)">
+                            {{book.upvoted ? 'Upvoted' : 'Upvote'}}
+                        </button>
+                        <div class="upvotes">{{'Upvoted ' + book.upvotes + ' times'}}</div>
+                    </div>
+
+                    <div class="synopsis">{{book.synopsis | truncate: 200}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
