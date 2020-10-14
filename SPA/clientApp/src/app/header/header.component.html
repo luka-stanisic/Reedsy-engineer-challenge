@@ -1,8 +1,9 @@
 
 <div class="header">
     <div class="container">
-        <div>
-            Search...
+        <div class="search-box">
+            <input type="text" [(ngModel)]="searchText" placeholder="Search books...">
+            <button (click)="search()">GO</button>
         </div>
     </div>
 </div>

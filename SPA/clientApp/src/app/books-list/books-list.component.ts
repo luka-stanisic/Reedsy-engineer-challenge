@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, filter } from 'rxjs/operators';
 import { BooksService } from '../services/books.service';
 import { Book } from '../shared/models/book';
 
@@ -11,16 +12,34 @@ import { Book } from '../shared/models/book';
 })
 export class BooksListComponent implements OnInit, OnDestroy {
   books: Book[];
+  booksToShow: Book[];
+  searchQuery: string;
   onDestroy$ = new Subject();
   
-  constructor(private bookService: BooksService) { }
+  constructor(
+    private bookService: BooksService, 
+    private route: ActivatedRoute, 
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+    // get query params
+    this.route.queryParams
+      .pipe(takeUntil(this.onDestroy$))
+      .subscribe(params => {
+        this.searchQuery = params.search;
+    });
+
+    // get books
     this.bookService.getBooks()
       .pipe(takeUntil(this.onDestroy$))
       .subscribe((books) => {
         this.books = books;
     });
+  }
+
+  clearSearch(){
+    this.router.navigate(['/books']);
   }
 
   toogleUpvote(book: Book){

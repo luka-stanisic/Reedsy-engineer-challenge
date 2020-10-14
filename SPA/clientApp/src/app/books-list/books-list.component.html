@@ -1,5 +1,13 @@
 <div class="container page-container">
-    <h1 class="page-title">Top books of all time</h1>
+    <h1 class="page-title">
+        <span *ngIf="!searchQuery">Top books of all time</span>
+        <span *ngIf="searchQuery">
+            <span>Search results for '{{searchQuery}}'</span>
+            <div class="clear-search">
+                <button class="button" (click)="clearSearch()">&times; Clear search</button>
+            </div>
+        </span>
+    </h1>
     
     <div class="book-list">
         <div *ngFor="let book of books; let i = index" class="book">

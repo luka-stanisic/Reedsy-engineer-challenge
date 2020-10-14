@@ -8,6 +8,7 @@ import { BooksListComponent } from './books-list/books-list.component';
 import { BookPageComponent } from './book-page/book-page.component';
 import { HeaderComponent } from './header/header.component';
 import { TruncatePipe } from './shared/pipes/truncate.pipe';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { TruncatePipe } from './shared/pipes/truncate.pipe';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -4,6 +4,14 @@
     text-align: center;
     color: $primary-color;
 }
+.clear-search{
+    .button{
+        padding: 5px 15px;
+        background-color: $light-gray;
+        border-color: $light-gray;
+        color: $primary-color
+    }
+}
 
 .book-list{
     display: flex;
