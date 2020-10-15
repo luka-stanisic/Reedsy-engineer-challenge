@@ -1,7 +1,7 @@
 import { Comment } from './comment';
 
 export class Book {
-	rank: number;
+	rank?: number;
 	author: string;
 	cover: string;
 	rating: string;
@@ -10,5 +10,5 @@ export class Book {
 	title: string;
 	upvoted: boolean;
 	upvotes: number;
-	comments: Comment[];
+	comments?: Comment[];
 }
