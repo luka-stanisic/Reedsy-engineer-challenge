@@ -17,7 +17,6 @@
 }
 .author{
     margin-bottom: 20px;
-    color: $muted-color;
 }
 .upvote{
     margin-bottom: 20px;
@@ -74,7 +73,105 @@
         font-size: 10px;
     }
 }
+.comments{
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 50px;
 
+    .header{
+        flex: 0 0 100%;
+    }
+    .new-comment{
+        flex: 0 0 100%;
+        padding-bottom: 10px;
+        margin-bottom: 5px;
+        border-bottom: 2px solid rgba(42,42,42,.05);
+
+        input{
+            min-width: 150px;
+            border: 2px solid $light-gray;
+            padding: 5px 10px;
+            border-radius: 4px;
+            outline: none;
+            font-size: 11px;
+            font-family: inherit;
+            height: 14px;
+
+            &:focus,
+            &:hover{
+                border: 2px solid $primary-color;
+            }
+
+            &.ng-invalid.ng-touched{
+                border: 2px solid tomato;
+            }
+        }
+        textarea{
+            transition: height 0.5s ease;
+            width: 100%;
+            resize: none;
+            box-sizing: border-box;
+            border: 2px solid $light-gray;
+            padding: 5px 10px;
+            border-radius: 4px;
+            outline: none;
+            font-size: 11px;
+            font-family: inherit;
+
+            &:focus,
+            &:hover{
+                border: 2px solid $primary-color;
+            }
+
+            &.ng-invalid.ng-touched{
+                border: 2px solid tomato;
+            }
+        }
+    }
+    .comment-list{
+        flex: 0 0 100%;
+
+        .comment{
+            margin-top: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            flex-wrap: wrap;
+
+            .user-circle {
+                flex: 0 0 15px;
+                border-radius: 50%;
+                width: 15px;
+                height: 15px;
+                padding: 8px;
+                background: $primary-color;
+                color: $white-color;
+                text-align: center;
+                font-size: 13px;
+                line-height: 15px;
+                font-weight: bold;
+            }
+            .user-comment{
+                flex: 1;
+
+                .name{
+                    padding-left: 10px;
+                    font-size: 12px;
+                    font-weight: bold;
+                }
+                .text{
+                    padding-left: 10px;
+                    font-size: 12px;
+                }
+                .date{
+                    padding-top: 5px;
+                    padding-left: 10px;
+                    font-size: 10px;
+                    color: $muted-color;
+                }
+            }
+        }
+    }
+}
 .no-book{
     color: $muted-color;
     text-align: center;

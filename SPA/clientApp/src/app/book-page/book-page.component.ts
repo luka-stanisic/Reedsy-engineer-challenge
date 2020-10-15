@@ -4,6 +4,9 @@ import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { BooksService } from '../services/books.service';
 import { Book } from '../shared/models/book';
+import { Comment } from '../shared/models/comment';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-book-page',
@@ -12,8 +15,13 @@ import { Book } from '../shared/models/book';
 })
 export class BookPageComponent implements OnInit, OnDestroy {
   book: Book;
+  comment: Comment;
   isLoading: boolean;
   onDestroy$ = new Subject();
+  commentForm = new FormGroup({
+    name: new FormControl('', Validators.required),
+    comment: new FormControl('', Validators.required),
+  });
 
   constructor(private bookService: BooksService, private route: ActivatedRoute) { }
 
@@ -36,6 +44,18 @@ export class BookPageComponent implements OnInit, OnDestroy {
     } else {
       book.upvoted = true;
       book.upvotes++;
+    }
+  }
+
+  addComment(){
+    this.commentForm.markAllAsTouched();
+    if(this.commentForm.valid){
+      this.bookService.addComment(this.book.slug, this.commentForm.value)
+      .pipe(takeUntil(this.onDestroy$))
+      .subscribe((book) => {
+        this.book = book;
+      });
+      this.commentForm.reset();
     }
   }
 

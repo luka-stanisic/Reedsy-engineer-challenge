@@ -8,10 +8,11 @@ import { BooksListComponent } from './books-list/books-list.component';
 import { BookPageComponent } from './book-page/book-page.component';
 import { HeaderComponent } from './header/header.component';
 import { TruncatePipe } from './shared/pipes/truncate.pipe';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SpinnerComponent } from './shared/components/spinner/spinner.component';
 import { HttpErrorInterceptor } from './shared/http-error.interceptor';
 import { ErrorComponent } from './error/error.component';
+import { TimeSincePipe } from './shared/pipes/time-since.pipe';
 
 @NgModule({
   declarations: [
@@ -21,13 +22,15 @@ import { ErrorComponent } from './error/error.component';
     HeaderComponent,
     TruncatePipe,
     SpinnerComponent,
-    ErrorComponent
+    ErrorComponent,
+    TimeSincePipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     {
