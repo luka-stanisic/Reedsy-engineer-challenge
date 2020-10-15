@@ -10,7 +10,7 @@
     </h1>
     
     <div class="book-list">
-        <div *ngFor="let book of booksOnPage" class="book">
+        <div *ngFor="let book of booksForPage" class="book">
             <div class="book-details">
                 <div class="cover">
                     <img [src]="book.cover" alt="Book cover" [routerLink]="['/books', book.slug]" [title]="book.title">
@@ -37,10 +37,16 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="pagination">
+        <button class="control-button" (click)="previousPage()" [disabled]="currentPage <= 1">&lsaquo; Previous</button>
 
-        <div class="pagination">
-            <button (click)="previousPage()">Previous</button>
-            <button (click)="nextPage()">Next</button>
+        <div class="pages">
+            <ng-container *ngFor="let page of pageNumbers">
+                <button class="control-button page-button" (click)="goToPage(page)" [class.active]="page == currentPage">{{page}}</button>
+            </ng-container>
         </div>
+
+        <button class="control-button"  (click)="nextPage()" [disabled]="currentPage >= totalPages">Next &rsaquo;</button>
     </div>
 </div>

@@ -23,6 +23,7 @@
 
             input{
                 flex-grow: 2;
+                outline: none;
                 border: 1px solid $light-gray;
                 background-color: $light-gray;
                 padding-top: 10px;
@@ -32,28 +33,27 @@
                 border-top-left-radius: 50px;
                 border-bottom-left-radius: 50px;
 
-                &:focus{
-                    outline: none;
+                &:focus {
                     border: 1px solid $primary-color;
-                }
 
-                &:focus + button {
-                    border: 1px solid $primary-color;
-                    background: $primary-color;
-                    color: $white-color;
-
-                    &:hover{
-                        background-color: $secondary-color;
+                    + button {
+                        &:hover{
+                            background-color: $secondary-color;
+                        }
                     }
                 }
             }
             button{
-                color: $light-gray;
-                border: 1px solid $light-gray;
-                background: $light-gray;
+                border: 1px solid $primary-color;
+                background: $primary-color;
+                color: $white-color;
                 border-radius: 50px;
                 cursor: pointer;
                 margin-left: -20px;
+
+                &:hover{
+                    background-color: $secondary-color;
+                }
             }
         }
     }

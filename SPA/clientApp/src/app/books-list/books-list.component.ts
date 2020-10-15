@@ -12,13 +12,16 @@ import { Book } from '../shared/models/book';
 })
 export class BooksListComponent implements OnInit, OnDestroy {
   onDestroy$ = new Subject();
-  itemsPerPage = 4;
 
   allBooks: Book[];
   filteredBooks: Book[];
-  booksOnPage: Book[];
   searchQuery: string;
+
+  booksForPage: Book[];
+  itemsPerPage = 4;
   currentPage: number;
+  totalPages: number;
+  pageNumbers: number[];
   startItem: number;
   endItem: number;
 
@@ -34,7 +37,6 @@ export class BooksListComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.onDestroy$))
       .subscribe(params => {
         this.searchQuery = params.search;
-
         this.filterBooks();
     });
 
@@ -44,50 +46,72 @@ export class BooksListComponent implements OnInit, OnDestroy {
       .subscribe((books) => {
         this.allBooks = books;
         this.filteredBooks = books;
-        
         this.filterBooks();
     });
   }
 
-  filterBooks(){       
-    if(this.searchQuery && this.allBooks){
-      this.filteredBooks = this.allBooks.filter((book) => {
-        return book.title.toLowerCase().includes(this.searchQuery.toLowerCase()) || 
-          book.synopsis.toLowerCase().includes(this.searchQuery.toLowerCase())
-      });
-    } else { 
-      this.filteredBooks = this.allBooks;
+  // Filters books based on search query
+  filterBooks(){     
+    if(this.allBooks){
+      if(this.searchQuery){
+        this.filteredBooks = this.allBooks.filter((book) => {
+          return book.title.toLowerCase().includes(this.searchQuery.toLowerCase()) || 
+            book.synopsis.toLowerCase().includes(this.searchQuery.toLowerCase())
+        });
+      } else { 
+        this.filteredBooks = this.allBooks;
+      }
+
+      this.resetPageItems();
     }
-    this.resetPageItems();
   }
 
+  // resets pagination to beginning
   resetPageItems(){
     this.currentPage = 1;
     this.startItem = 0;
     this.endItem = this.itemsPerPage;
-    if(this.filteredBooks){
-      this.booksOnPage = this.filteredBooks.slice(this.startItem, this.endItem);
+    this.totalPages = Math.ceil(this.filteredBooks.length / this.itemsPerPage);
+    this.pageNumbers = [ ...Array(this.totalPages).keys() ].map((i) => i+1);
+    this.setPageItems();
+  }
+
+  // sets items needed for current page
+  setPageItems(){
+    if(this.filteredBooks.length){
+      this.booksForPage = this.filteredBooks.slice(this.startItem, this.endItem);
     }
   }
 
+  // go to previous page
   previousPage(){
     if(this.startItem > 0){
       this.currentPage--;
-      this.startItem = (this.currentPage - 1) * this.itemsPerPage;
-      this.endItem = this.currentPage * this.itemsPerPage;
-  
-      this.booksOnPage = this.filteredBooks.slice(this.startItem, this.endItem);
+      this.pageChanged();
     }
   }
 
+  // go to next page
   nextPage(){
     if(this.endItem < this.filteredBooks.length){
-      this.startItem = this.currentPage * this.itemsPerPage;
       this.currentPage++;
-      this.endItem = this.currentPage * this.itemsPerPage;
-  
-      this.booksOnPage = this.filteredBooks.slice(this.startItem, this.endItem);
+      this.pageChanged();
     }
+  }
+
+  // go directly to clicked page
+  goToPage(page: number){
+    this.currentPage = page;
+    this.pageChanged();
+  }
+
+  // triggered on every page change
+  pageChanged(){
+    this.startItem = (this.currentPage - 1) * this.itemsPerPage;
+    this.endItem = this.currentPage * this.itemsPerPage;
+    
+    window.scrollTo(0,0);
+    this.setPageItems();
   }
 
   clearSearch(){
