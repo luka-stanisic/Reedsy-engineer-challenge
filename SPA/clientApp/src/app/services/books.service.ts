@@ -15,6 +15,9 @@ export class BooksService {
 		return this.http.get<Book[]>(environment.baseApiUrl + '/books').pipe(
       map((resp: any) => {
         if (resp && resp.books) {
+          for(let i=0; i<resp.books.length; i++){
+            resp.books[i].rank = i+1;
+          }
           return resp.books;
         }
       })

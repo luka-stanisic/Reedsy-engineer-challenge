@@ -10,14 +10,14 @@
     </h1>
     
     <div class="book-list">
-        <div *ngFor="let book of books; let i = index" class="book">
+        <div *ngFor="let book of booksOnPage" class="book">
             <div class="book-details">
                 <div class="cover">
                     <img [src]="book.cover" alt="Book cover" [routerLink]="['/books', book.slug]" [title]="book.title">
                 </div>
                 
                 <div class="book-info">
-                    <div class="title" [routerLink]="['/books', book.slug]">{{(i + 1) + '. ' + book.title}}</div>
+                    <div class="title" [routerLink]="['/books', book.slug]">{{book.rank + '. ' + book.title}}</div>
                     <div class="author">{{book.author}}</div>
                     
                     <div class="rating">
@@ -35,6 +35,11 @@
                     <div class="synopsis">{{book.synopsis | truncate: 200}}</div>
                 </div>
             </div>
+        </div>
+
+        <div class="pagination">
+            <button (click)="previousPage()">Previous</button>
+            <button (click)="nextPage()">Next</button>
         </div>
     </div>
 </div>

@@ -1,4 +1,5 @@
 export class Book {
+	rank: number;
 	author: string;
 	cover: string;
 	rating: string;
