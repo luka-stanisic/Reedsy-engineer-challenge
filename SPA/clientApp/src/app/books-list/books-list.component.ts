@@ -16,6 +16,7 @@ export class BooksListComponent implements OnInit, OnDestroy {
   allBooks: Book[];
   filteredBooks: Book[];
   searchQuery: string;
+  isLoading: boolean;
 
   booksForPage: Book[];
   itemsPerPage = 4;
@@ -41,12 +42,13 @@ export class BooksListComponent implements OnInit, OnDestroy {
     });
 
     // get books
+    this.isLoading = true;
     this.bookService.getBooks()
       .pipe(takeUntil(this.onDestroy$))
       .subscribe((books) => {
         this.allBooks = books;
-        this.filteredBooks = books;
         this.filterBooks();
+        this.isLoading = false;
     });
   }
 
@@ -78,8 +80,10 @@ export class BooksListComponent implements OnInit, OnDestroy {
 
   // sets items needed for current page
   setPageItems(){
-    if(this.filteredBooks.length){
+    if(this.filteredBooks.length > this.itemsPerPage){
       this.booksForPage = this.filteredBooks.slice(this.startItem, this.endItem);
+    } else {
+      this.booksForPage = this.filteredBooks;
     }
   }
 

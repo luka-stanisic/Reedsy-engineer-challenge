@@ -3,35 +3,48 @@
         <a [routerLink]="['/books']">&lsaquo; Back</a>
     </div>
 
-    <h1 class="title">{{book.title}}</h1>
-    <div class="author">
-        {{'By ' + book.author}}
-    </div>
-
-    <div class="rating">
-        <span class="main">{{book.rating}}</span>
-        <span class="total"> / 10</span>
-    </div>
-
-    <div class="upvote">
-        <button class="button" [class.activated]="book.upvoted" (click)="toogleUpvote(book)">
-            {{book.upvoted ? 'Upvoted' : 'Upvote'}}
-        </button>
-        <div class="upvotes">{{'Upvoted ' + book.upvotes + ' times'}}</div>
-    </div>
-
-    <div class="flex-wrap">
-        <div class="cover">
-            <img [src]="book.cover" alt="Book cover" [title]="book.title">
+    <ng-container *ngIf="book; else noBook">
+        <h1 class="title">{{book.title}}</h1>
+        <div class="author">
+            {{'By ' + book.author}}
         </div>
-    
-        <div class="synopsis">
-            <div class="synopsis-container">
-                <h3 class="header">Synopsis</h3>
-                <div class="text">
-                    {{book.synopsis}}
+
+        <div class="rating">
+            <span class="main">{{book.rating}}</span>
+            <span class="total"> / 10</span>
+        </div>
+
+        <div class="upvote">
+            <button class="button" [class.activated]="book.upvoted" (click)="toogleUpvote(book)">
+                {{book.upvoted ? 'Upvoted' : 'Upvote'}}
+            </button>
+            <div class="upvotes">{{'Upvoted ' + book.upvotes + ' times'}}</div>
+        </div>
+
+        <div class="flex-wrap">
+            <div class="cover">
+                <img [src]="book.cover" alt="Book cover" [title]="book.title">
+            </div>
+        
+            <div class="synopsis">
+                <div class="synopsis-container">
+                    <h3 class="header">Synopsis</h3>
+                    <div class="text">
+                        {{book.synopsis}}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </ng-container>
+
+    <ng-template #noBook>        
+        <div *ngIf="isLoading" class="loading">
+            <app-spinner></app-spinner>
+        </div>
+
+        <div *ngIf="!isLoading" class="no-book">
+            <h1>Book not found</h1>
+            Please return <a [routerLink]="['/books']">home</a> and try again
+        </div>
+    </ng-template>
 </div>

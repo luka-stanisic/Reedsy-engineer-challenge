@@ -12,6 +12,7 @@ import { Book } from '../shared/models/book';
 })
 export class BookPageComponent implements OnInit, OnDestroy {
   book: Book;
+  isLoading: boolean;
   onDestroy$ = new Subject();
 
   constructor(private bookService: BooksService, private route: ActivatedRoute) { }
@@ -19,10 +20,12 @@ export class BookPageComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     const slug = this.route.snapshot.params['slug'];
     
+    this.isLoading = true;
     this.bookService.getBookInfo(slug)
     .pipe(takeUntil(this.onDestroy$))
     .subscribe((book) => {
       this.book = book;
+      this.isLoading = false;
     });
   }
 

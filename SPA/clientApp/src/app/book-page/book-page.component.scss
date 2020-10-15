@@ -75,6 +75,20 @@
     }
 }
 
+.no-book{
+    color: $muted-color;
+    text-align: center;
+    
+    h1{
+        font-size: 50px;
+        margin-bottom: 10px;
+    }
+    a {
+        text-decoration: none;
+        color: $primary-color;
+    }
+}
+
 /* RESPONSIVE BREAKPOINTS */
 
 /* Extra small devices only */
