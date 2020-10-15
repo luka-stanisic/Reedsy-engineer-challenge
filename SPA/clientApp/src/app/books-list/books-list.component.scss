@@ -89,7 +89,7 @@
                     padding-left: 15px;
                     padding-top: 10px;
                     text-align: right;
-                    margin-bottom: 10px;
+                    margin-top: auto;
 
                     .button{
                         width: 100%;
@@ -100,12 +100,17 @@
                         font-size: 10px;
                     }
                 }
+            }
+
+            .synopsis-wrap{
+                flex: 0 0 100%;
+                max-width: 100%;
+                margin-top: 10px;
+
                 .synopsis{
-                    margin-top: auto;
-                    padding-left: 15px;
                     text-align: justify;
                     font-size: 13px;
-                    align-self: flex-end;
+                    color: $muted-color;
                 }
             }
         }
@@ -132,8 +137,13 @@
                     .title,
                     .author,
                     .rating,
-                    .upvote,
+                    .upvote{
+                        padding-right: 15px;
+                    }
+                }
+                .synopsis-wrap{
                     .synopsis{
+                        padding-left: 15px;
                         padding-right: 15px;
                     }
                 }
@@ -146,18 +156,19 @@
 @media (min-width: 576px) {  
     .book-list{
         .book{
+            /* set book - info ratio here */
             .book-details {
                 .cover{
-                    flex: 0 0 40%;
-                    max-width: 40%;
+                    flex: 0 0 20%;
+                    max-width: 20%;
 
                     img{
                         max-width: 100%;
                     }
                 }
                 .book-info{
-                    flex: 0 0 60%;
-                    max-width: 60%;
+                    flex: 0 0 80%;
+                    max-width: 80%;
                 }
             }
         }
@@ -170,6 +181,18 @@
         .book{
             flex: 0 0 45%;
             max-width: 45%;
+
+            /* set book - info ratio here */
+            .book-details {
+                .cover{
+                    flex: 0 0 30%;
+                    max-width: 30%;
+                }
+                .book-info{
+                    flex: 0 0 70%;
+                    max-width: 70%;
+                }
+            }
         }
     }
 }

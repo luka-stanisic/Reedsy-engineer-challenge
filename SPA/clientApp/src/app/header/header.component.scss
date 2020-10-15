@@ -28,6 +28,7 @@
                 padding-top: 10px;
                 padding-bottom: 10px;
                 padding-left: 15px;
+                padding-right: 15px;
                 border-top-left-radius: 50px;
                 border-bottom-left-radius: 50px;
 
@@ -50,10 +51,9 @@
                 color: $light-gray;
                 border: 1px solid $light-gray;
                 background: $light-gray;
-                border-top-right-radius: 50px;
-                border-bottom-right-radius: 50px;
-                padding-right: 10px;
+                border-radius: 50px;
                 cursor: pointer;
+                margin-left: -20px;
             }
         }
     }

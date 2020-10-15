@@ -26,12 +26,13 @@
                     </div>
 
                     <div class="upvote">
+                        <div class="upvotes">{{'Upvoted ' + book.upvotes + ' times'}}</div>
                         <button class="button" [class.activated]="book.upvoted" (click)="toogleUpvote(book)">
                             {{book.upvoted ? 'Upvoted' : 'Upvote'}}
                         </button>
-                        <div class="upvotes">{{'Upvoted ' + book.upvotes + ' times'}}</div>
                     </div>
-
+                </div>
+                <div class="synopsis-wrap">
                     <div class="synopsis">{{book.synopsis | truncate: 200}}</div>
                 </div>
             </div>
