@@ -6,5 +6,5 @@ This is a repository regarding the [Reedsy Front end Engineer challenge](https:/
 
 1. [About Me](AboutYou/AboutMe.md)
 2. [General](General/General.md)
-3. [StylingChallenge](StylingChallenge/q3.html)
-4. [SPA](SPA/README.md)
+3. [StylingChallenge](StylingChallenge)
+4. [SPA](SPA)
